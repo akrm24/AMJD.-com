@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMJD PRO MAX - حكمة، فلسفة، تطوير ذات</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Link to External CSS -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header / Navigation -->
+    <header id="header">
+        <div class="container">
+            <a href="#home" class="logo">AMJD</a>
+            <nav>
+                <!-- Hamburger Button for Mobile -->
+                <button id="mobile-menu-toggle" aria-label="فتح القائمة" aria-expanded="false" aria-controls="main-nav-ul">
+                    <svg viewBox="0 0 100 80" width="30" height="30" fill="var(--text-color)">
+                      <rect width="100" height="15" rx="8"></rect>
+                      <rect y="30" width="100" height="15" rx="8"></rect>
+                      <rect y="60" width="100" height="15" rx="8"></rect>
+                    </svg>
+                </button>
+
+                <!-- Main Navigation List -->
+                <ul id="main-nav-ul">
+                    <li><a href="#home" class="nav-link">الرئيسية</a></li>
+                    <li><a href="data.html" class="nav-link">المحتوى</a></li> <!-- رابط للملف الجديد -->
+                    <li><a href="#library" class="nav-link">المكتبة</a></li>
+                    <li><a href="#secrets" class="nav-link">الأسرار</a></li>
+                    <li><a href="#about" class="nav-link">حول القناة</a></li>
+                    <li><a href="#contact" class="nav-link">اتصل بي</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="section" data-section-id="home">
+        <div class="container">
+            <h1>AMJD: أعماق الحكمة، دروب الفلسفة</h1>
+            <p>بوابتك الفريدة لعالم من التأمل، الإلهام، وتطوير الذات بأسلوب يلامس العقل والروح. استكشف <a href="data.html" style="color: var(--accent-color); text-decoration: underline;">المحتوى المتعمق</a> لاكتشاف المزيد.</p>
+            <div class="video-placeholder">
+<div class="video-placeholder">
+                <!-- YouTube Video Embed -->
+                <iframe
+                    src="https://www.youtube.com/embed/r_v5S2nKNWY?si=e5FtZbLqrpqzLB3S"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Library Section -->
+    <section id="library" class="section" data-section-id="library">
+        <div class="container">
+            <h2 class="section-title content-scroll-reveal">مكتبة AMJD الموصى بها</h2>
+            <div class="library-grid">
+                <div class="library-item glass-effect content-scroll-reveal">
+                    <img src="https://i.ibb.co/1fcDJQ5D/file-000000008a285230b9a289279727ae39-conversation-id-67f4c8ee-14b4-8002-b042-fd0ea253742d-message-i.png" alt="غلاف كتاب التأملات" class="book-cover">
+                    <h4>التأملات</h4>
+                    <p>لماركوس أوريليوس - يوميات إمبراطور روماني وفيلسوف رواقي، كنز من الحكمة العملية.</p>
+                    <a href="" target="_blank" title="ابحث عن الكتاب">ابحث عنه</a>
+                </div>
+                 <div class="library-item glass-effect content-scroll-reveal">
+                    <img src="https://i.ibb.co/9mmGxXNr/file-00000000b0a851f795b290434f383851-conversation-id-67f4c8ee-14b4-8002-b042-fd0ea253742d-message-i.png" alt="غلاف كتاب هكذا تكلم زرادشت" class="book-cover">
+                    <h4>هكذا تكلم زرادشت</h4>
+                    <p>لفريدريك نيتشه - عمل فلسفي شعري عميق يستكشف مواضيع الإرادة، الإنسان الأعلى، والعود الأبدي.</p>
+                     <a href="#" target="_blank" title="ابحث عن الكتاب">ابحث عنه</a>
+                </div>
+                 <div class="library-item glass-effect content-scroll-reveal">
+                    <img src="https://i.ibb.co/zHRSnqL2/7feb373ce946c476efdb03834aa0c9f4.jpg" alt="غلاف كتاب العادات الذرية" class="book-cover">
+                    <h4>العادات الذرية</h4>
+                    <p>لجيمس كلير - دليل عملي لبناء عادات جيدة والتخلص من السيئة عبر تغييرات صغيرة ومستمرة.</p>
+                    <a href="#" target="_blank" title="ابحث عن الكتاب">ابحث عنه</a>
+                </div>
+                 <!-- أضف المزيد من الكتب والمراجع -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Secrets Section (Still needs trigger, maybe move trigger or handle differently) -->
+    <!-- Note: Secrets trigger needs reconsideration. Should it be triggered from index.html or data.html? -->
+    <!-- Let's keep it here for now, it might trigger late if user stays long enough -->
+    <section id="secrets-placeholder" style="height: 50px;"></section> <!-- Placeholder to potentially trigger secrets -->
+    <div id="secrets-trigger"></div>
+
+    <section id="secrets" class="section hidden" data-section-id="secrets">
+        <div class="container glass-effect">
+            <h2 class="section-title">🗝️ ركن الأسرار 🗝️</h2>
+            <p>لقد تجاوزت الظاهر ووصلت إلى العمق! هذا المكان مخصص للمستكشفين الحقيقيين.</p>
+            <div class="secret-content">
+                <p>تذكر دائمًا: "الرحلة إلى الداخل هي أعظم المغامرات." قد تجد هنا تحديًا فكريًا، أو رسالة مخفية في وقت لاحق، أو ببساطة تذكير بأن البحث عن الحقيقة لا ينتهي.</p>
+                 <p style="margin-top: 15px; font-style: italic; color: var(--accent-color);">"ما لا يقتلني يجعلني أقوى" - نيتشه</p>
+            </div>
+        </div>
+    </section>
+
+     <!-- About Section -->
+    <section id="about" class="section" data-section-id="about">
+        <div class="container content-scroll-reveal">
+            <h2 class="section-title">من هو AMJD؟</h2>
+            <div class="about-content">
+                <img src="https://i.ibb.co/MDVph2fn/snapedit-1740036158634-jpeg.png" alt="صورة AMJD الشخصية" class="profile-pic">
+                <div>
+                    <p>
+                        أنا AMJD، باحث دائم عن المعرفة، شغوف بأعماق الفلسفة وقوة تطوير الذات. لست معلمًا أو مرشدًا بالمعنى التقليدي، بل رفيق رحلة يشارك ما تعلمه وما يؤمن به.
+                    </p>
+                    <p>
+                        أنشأت هذه المنصة لتكون مساحة للتفكير النقدي، الإلهام، وتبادل الأدوات التي ساعدتني شخصيًا في فهم العالم وفهم نفسي بشكل أفضل. رسالتي هي تبسيط الأفكار المعقدة، وإثارة الفضول، وتشجيع كل فرد على بناء نسخته الأفضل من خلال رحلته الخاصة. أؤمن بأن الحكمة ليست حكرًا على أحد، بل هي نتاج سعي مستمر وتأمل صادق.
+                    </p>
+                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section" data-section-id="contact">
+        <div class="container">
+            <h2 class="section-title content-scroll-reveal">تواصل معي</h2>
+            <p class="content-scroll-reveal" style="margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; color: #ccc;">
+                أقدر آرائكم وأسئلتكم. استخدم النموذج أدناه لمشاركة أفكارك أو استفساراتك.
+            </p>
+            <form id="contact-form" class="contact-form glass-effect content-scroll-reveal" novalidate>
+                <div class="form-group">
+                    <label for="name">الاسم:</label>
+                    <input type="text" id="name" name="name" required title="يرجى إدخال اسمك">
+                </div>
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني:</label>
+                    <input type="email" id="email" name="email" required title="يرجى إدخال بريد إلكتروني صالح">
+                </div>
+                <div class="form-group">
+                    <label for="message">رسالتك:</label>
+                    <textarea id="message" name="message" rows="6" required title="يرجى كتابة رسالتك"></textarea>
+                </div>
+                <button type="submit" class="cta-button">إرسال الرسالة</button>
+                 <div id="form-status"></div> <!-- لعرض رسائل الحالة -->
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+             <div class="social-links">
+                 <a href="https://www.youtube.com/@Power-in-AMJD" target="_blank" title="يوتيوب"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33.22 2.65.28 1.3.07 2.49.1 3.59.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg></a>
+                 <a href="#" target="_blank" title="تويتر/X"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                 <a href="#" target="_blank" title="انستغرام"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2zm-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6zm9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg></a>
+                 <!-- أضف روابط أخرى -->
+            </div>
+            <p>© 2025 قناة AMJD. كل الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#home" id="back-to-top" class="hidden" title="العودة إلى الأعلى">
+       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </a>
+
+    <!-- Link to External JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>

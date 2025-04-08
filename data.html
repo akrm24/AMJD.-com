@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMJD - بحر من الحكمة والفلسفة وتطوير الذات</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Link to External CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome for Share Icons (Optional - Add if you want icons) -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> -->
+
+</head>
+<body>
+    <!-- Simple Navigation back to Home -->
+    <header id="header" class="static-header">
+         <div class="container" style="justify-content: center;">
+            <a href="index.html" class="logo" style="margin: 15px 0;">العودة إلى الرئيسية</a>
+         </div>
+    </header>
+
+    <!-- Wisdom Section - Expanded -->
+    <section id="wisdom" class="section section-divider" data-section-id="wisdom">
+        <div class="container">
+            <h2 class="section-title content-scroll-reveal">بحر من الحِكم</h2>
+            <p class="section-subtitle content-scroll-reveal">مجموعة واسعة من الأقوال المُلهمة عبر العصور والثقافات.</p>
+
+            <!-- Wisdom Filter -->
+            <div class="filter-container content-scroll-reveal">
+                 <input type="text" id="wisdom-filter" placeholder="ابحث في الحكم..." title="اكتب كلمة للبحث في الحكم">
+            </div>
+
+            <div class="wisdom-grid">
+                <!-- Initial visible items -->
+                <div class="wisdom-quote glass-effect content-scroll-reveal" data-author="أرسطو">
+                    <p>"قوة العقل هي روح الحياة."</p>
+                    <span>- أرسطو</span>
+                    <div class="quote-actions">
+                        <button class="copy-btn" onclick="copyQuote(this)" title="نسخ الحكمة"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg> نسخ</button>
+                        <a href="#" class="share-btn twitter" onclick="shareQuote(this, 'twitter')" title="مشاركة على تويتر/X"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> مشاركة</a>
+                    </div>
+                </div>
+                <div class="wisdom-quote glass-effect content-scroll-reveal" data-author="مارك توين">
+                    <p>"الشجاعة ليست غياب الخوف، بل القدرة على التصرف بوجوده."</p>
+                    <span>- مارك توين</span>
+                     <div class="quote-actions">
+                        <button class="copy-btn" onclick="copyQuote(this)" title="نسخ الحكمة"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg> نسخ</button>
+                        <a href="#" class="share-btn twitter" onclick="shareQuote(this, 'twitter')" title="مشاركة على تويتر/X"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> مشاركة</a>
+                    </div>
+                </div>
+                 <div class="wisdom-quote glass-effect content-scroll-reveal" data-author="جون ف. كينيدي">
+                    <p>"التغيير هو قانون الحياة. وأولئك الذين ينظرون فقط إلى الماضي أو الحاضر، من المؤكد أنهم سيفوتون المستقبل."</p>
+                    <span>- جون ف. كينيدي</span>
+                     <div class="quote-actions">
+                        <button class="copy-btn" onclick="copyQuote(this)" title="نسخ الحكمة"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg> نسخ</button>
+                         <a href="#" class="share-btn twitter" onclick="shareQuote(this, 'twitter')" title="مشاركة على تويتر/X"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> مشاركة</a>
+                    </div>
+                </div>
+                 <div class="wisdom-quote glass-effect content-scroll-reveal" data-author="حكمة رواقية">
+                    <p>"امتلك القليل، تكن أغنى. فالثراء الحقيقي في الاستغناء وليس في الامتلاك."</p>
+                    <span>- حكمة رواقية</span>
+                     <div class="quote-actions">
+                        <button class="copy-btn" onclick="copyQuote(this)" title="نسخ الحكمة"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg> نسخ</button>
+                         <a href="#" class="share-btn twitter" onclick="shareQuote(this, 'twitter')" title="مشاركة على تويتر/X"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> مشاركة</a>
+                    </div>
+                </div>
+                 <div class="wisdom-quote glass-effect content-scroll-reveal" data-author="ماركوس أوريليوس">
+                     <p>"العقبة هي الطريق."</p>
+                     <span>- ماركوس أوريليوس</span>
+                     <div class="quote-actions">
+                        <button class="copy-btn" onclick="copyQuote(this)" title="نسخ الحكمة"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg> نسخ</button>
+                         <a href="#" class="share-btn twitter" onclick="shareQuote(this, 'twitter')" title="مشاركة على تويتر/X"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> مشاركة</a>
+                    </div>
+                 </div>
+                 <div class="wisdom-quote glass-effect content-scroll-reveal" data-author="هيراقليطس">
+                     <p>"لا يمكن للمرء أن يخطو في نفس النهر مرتين."</p>
+                     <span>- هيراقليطس</span>
+                     <div class="quote-actions">
+                        <button class="copy-btn" onclick="copyQuote(this)" title="نسخ الحكمة"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg> نسخ</button>
+                         <a href="#" class="share-btn twitter" onclick="shareQuote(this, 'twitter')" title="مشاركة على تويتر/X"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> مشاركة</a>
+                    </div>
+                 </div>
+
+                <!-- Extra items (hidden initially) -->
+                <div class="wisdom-quote glass-effect extra-item content-scroll-reveal" data-author="كونفوشيوس">
+                     <p>"رحلة الألف ميل تبدأ بخطوة واحدة."</p>
+                     <span>- كونفوشيوس</span>
+                     <div class="quote-actions">
+                        <button class="copy-btn" onclick="copyQuote(this)" title="نسخ الحكمة"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg> نسخ</button>
+                         <a href="#" class="share-btn twitter" onclick="shareQuote(this, 'twitter')" title="مشاركة على تويتر/X"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> مشاركة</a>
+                    </div>
+                </div>
+                 <div class="wisdom-quote glass-effect extra-item content-scroll-reveal" data-author="ليو تولستوي">
+                     <p>"الجميع يفكر في تغيير العالم، لكن لا أحد يفكر في تغيير نفسه."</p>
+                     <span>- ليو تولستوي</span>
+                      <div class="quote-actions">
+                        <button class="copy-btn" onclick="copyQuote(this)" title="نسخ الحكمة"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg> نسخ</button>
+                         <a href="#" class="share-btn twitter" onclick="shareQuote(this, 'twitter')" title="مشاركة على تويتر/X"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> مشاركة</a>
+                    </div>
+                 </div>
+                 <div class="wisdom-quote glass-effect extra-item content-scroll-reveal" data-author="بوذا">
+                     <p>"لا تسكن في الماضي، لا تحلم بالمستقبل، ركز ذهنك على اللحظة الحاضرة."</p>
+                     <span>- بوذا</span>
+                      <div class="quote-actions">
+                        <button class="copy-btn" onclick="copyQuote(this)" title="نسخ الحكمة"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg> نسخ</button>
+                         <a href="#" class="share-btn twitter" onclick="shareQuote(this, 'twitter')" title="مشاركة على تويتر/X"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> مشاركة</a>
+                    </div>
+                 </div>
+                 <div class="wisdom-quote glass-effect extra-item content-scroll-reveal" data-author="ألبرت أينشتاين">
+                     <p>"الخيال أهم من المعرفة. فالمعرفة محدودة بما نعرفه الآن ونفهمه، بينما الخيال يلف العالم بأسره."</p>
+                     <span>- ألبرت أينشتاين</span>
+                      <div class="quote-actions">
+                        <button class="copy-btn" onclick="copyQuote(this)" title="نسخ الحكمة"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg> نسخ</button>
+                         <a href="#" class="share-btn twitter" onclick="shareQuote(this, 'twitter')" title="مشاركة على تويتر/X"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> مشاركة</a>
+                    </div>
+                 </div>
+                 <div class="wisdom-quote glass-effect extra-item content-scroll-reveal" data-author="جلال الدين الرومي">
+                     <p>"ما تبحث عنه يبحث عنك."</p>
+                     <span>- جلال الدين الرومي</span>
+                      <div class="quote-actions">
+                        <button class="copy-btn" onclick="copyQuote(this)" title="نسخ الحكمة"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg> نسخ</button>
+                         <a href="#" class="share-btn twitter" onclick="shareQuote(this, 'twitter')" title="مشاركة على تويتر/X"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> مشاركة</a>
+                    </div>
+                 </div>
+                <div class="wisdom-quote glass-effect extra-item content-scroll-reveal" data-author="أوسكار وايلد">
+                     <p>"كن نفسك؛ فالجميع مأخوذون بالفعل."</p>
+                     <span>- أوسكار وايلد</span>
+                      <div class="quote-actions">
+                        <button class="copy-btn" onclick="copyQuote(this)" title="نسخ الحكمة"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg> نسخ</button>
+                         <a href="#" class="share-btn twitter" onclick="shareQuote(this, 'twitter')" title="مشاركة على تويتر/X"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> مشاركة</a>
+                    </div>
+                 </div>
+                 <!-- ... أضف عشرات أخرى بنفس النمط -->
+
+            </div>
+             <div id="copy-status" class="status-message"></div>
+
+             <!-- Load More Button for Wisdom -->
+             <div class="load-more-container content-scroll-reveal">
+                <button id="load-more-wisdom" class="cta-button">تحميل المزيد من الحكم</button>
+             </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section - Expanded -->
+    <section id="philosophy" class="section section-divider" data-section-id="philosophy">
+        <div class="container">
+            <h2 class="section-title content-scroll-reveal">محيط من الفلسفة</h2>
+            <p class="section-subtitle content-scroll-reveal">مقالات ومقتطفات لاستكشاف الأفكار الكبرى التي شكلت وعينا.</p>
+
+             <div class="philosophy-grid">
+                <article class="philosophy-item glass-effect content-scroll-reveal">
+                    <h3>فن العيش الرواقي</h3>
+                    <p>كيف تعلمك الرواقية التحكم فيما يمكنك التحكم به وقبول ما لا يمكنك، لتحقيق السكينة الداخلية في عالم مضطرب.</p>
+                    <div class="tags-container">
+                        <span class="tag">رواقية</span><span class="tag">فلسفة عملية</span><span class="tag">تحكم بالعواطف</span>
+                    </div>
+                    <a href="#" class="read-more" title="قراءة المقال الكامل">اقرأ المزيد »</a>
+                </article>
+                <article class="philosophy-item glass-effect content-scroll-reveal">
+                    <h3>نيتشه: نحو الإنسان الأعلى</h3>
+                    <p>استكشاف دعوة نيتشه لتجاوز الذات وخلق القيم الخاصة بنا في عالم فقد معاييره التقليدية.</p>
+                     <div class="tags-container">
+                        <span class="tag">نيتشه</span><span class="tag">إرادة القوة</span><span class="tag">وجودية</span>
+                    </div>
+                     <a href="#" class="read-more" title="قراءة المقال الكامل">اقرأ المزيد »</a>
+                </article>
+                 <article class="philosophy-item glass-effect content-scroll-reveal">
+                    <h3>ديوجين والكلبية: تمرد على المألوف</h3>
+                    <p>تعلم من الفيلسوف الذي عاش في برميل كيف يمكن للتبسيط الجذري وفضح النفاق الاجتماعي أن يقود إلى شكل من أشكال الحرية.</p>
+                     <div class="tags-container">
+                        <span class="tag">كلبية</span><span class="tag">تبسيط</span><span class="tag">فلسفة يونانية</span>
+                    </div>
+                     <a href="#" class="read-more" title="قراءة المقال الكامل">اقرأ المزيد »</a>
+                </article>
+                 <article class="philosophy-item glass-effect content-scroll-reveal">
+                    <h3>كهف أفلاطون: هل نرى الحقيقة؟</h3>
+                    <p>استعارة قوية حول طبيعة الواقع، المعرفة، ورحلة الفيلسوف نحو التنوير والخروج من قيود الوهم.</p>
+                     <div class="tags-container">
+                        <span class="tag">أفلاطون</span><span class="tag">نظرية المُثُل</span><span class="tag">معرفة</span>
+                    </div>
+                    <a href="#" class="read-more" title="قراءة المقال الكامل">اقرأ المزيد »</a>
+                 </article>
+                 <article class="philosophy-item glass-effect content-scroll-reveal">
+                    <h3>مبدأ الشك الديكارتي: "أنا أفكر، إذن أنا موجود"</h3>
+                    <p>رحلة ديكارت في البحث عن أساس يقيني للمعرفة من خلال الشك المنهجي في كل شيء.</p>
+                     <div class="tags-container">
+                        <span class="tag">ديكارت</span><span class="tag">عقلانية</span><span class="tag">شك منهجي</span>
+                    </div>
+                     <a href="#" class="read-more" title="قراءة المقال الكامل">اقرأ المزيد »</a>
+                 </article>
+                 <article class="philosophy-item glass-effect content-scroll-reveal">
+                    <h3>العبثية عند ألبير كامو</h3>
+                    <p>كيف نواجه التناقض بين بحث الإنسان الفطري عن المعنى والكون الصامت واللامبالي؟ استكشاف مفهوم التمرد والحرية والعاطفة.</p>
+                     <div class="tags-container">
+                        <span class="tag">كامو</span><span class="tag">عبثية</span><span class="tag">وجودية</span>
+                    </div>
+                     <a href="#" class="read-more" title="قراءة المقال الكامل">اقرأ المزيد »</a>
+                 </article>
+                 <article class="philosophy-item glass-effect content-scroll-reveal">
+                    <h3>فلسفة الطاو: طريق العفوية والتناغم</h3>
+                    <p>مقدمة لمفاهيم "الطاو" (المسار) و "وو وي" (الفعل بلا جهد) وكيفية العيش بتناغم مع الطبيعة وتدفق الحياة.</p>
+                     <div class="tags-container">
+                        <span class="tag">طاوية</span><span class="tag">فلسفة شرقية</span><span class="tag">تناغم</span>
+                    </div>
+                     <a href="#" class="read-more" title="قراءة المقال الكامل">اقرأ المزيد »</a>
+                 </article>
+                <!-- أضف المزيد من المقالات الفلسفية -->
+                <!-- يمكن إضافة زر "تحميل المزيد" هنا أيضاً بنفس المبدأ -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Self Development Section - Expanded -->
+    <section id="self-dev" class="section section-divider" data-section-id="self-dev">
+        <div class="container">
+            <h2 class="section-title content-scroll-reveal">ترسانة من أدوات تطوير الذات</h2>
+            <p class="section-subtitle content-scroll-reveal">مفاهيم، تمارين، وتحديات عملية لتطبيق الحكمة والفلسفة في حياتك اليومية.</p>
+
+            <div class="self-dev-grid">
+                <article class="dev-tool glass-effect content-scroll-reveal">
+                     <div class="tool-icon" title="تحدي عملي">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+                     </div>
+                    <h3>تحدي التركيز العميق</h3>
+                    <p>تمرين يومي لمدة أسبوع لزيادة قدرتك على التركيز وإنجاز المهام الهامة بكفاءة أعلى.</p>
+                     <div class="tags-container">
+                        <span class="tag">إنتاجية</span><span class="tag">تركيز</span><span class="tag">تحدي</span>
+                    </div>
+                    <a href="#" class="cta-button" title="ابدأ تحدي التركيز الآن">ابدأ التحدي</a>
+                </article>
+                 <article class="dev-tool glass-effect content-scroll-reveal">
+                     <div class="tool-icon" title="مقالات ملهمة">
+                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+                     </div>
+                    <h3>قوة الصباح الباكر</h3>
+                    <p>اكتشف كيف يمكن لاستغلال الساعات الأولى من يومك أن يغير مسار حياتك بالكامل.</p>
+                     <div class="tags-container">
+                        <span class="tag">عادات</span><span class="tag">روتين</span><span class="tag">إلهام</span>
+                    </div>
+                    <a href="#" class="cta-button" title="اقرأ المقال عن روتين الصباح">تصفح المقالات</a>
+                </article>
+                 <article class="dev-tool glass-effect content-scroll-reveal">
+                      <div class="tool-icon" title="أداة عملية">
+                          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83zM3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM5.92 19H5v-.92l9.06-9.06.92.92L5.92 19z"/></svg>
+                      </div>
+                    <h3>مصفوفة أيزنهاور</h3>
+                    <p>أداة بسيطة وفعالة لتحديد أولويات مهامك والتركيز على ما هو مهم حقًا وليس فقط العاجل.</p>
+                     <div class="tags-container">
+                        <span class="tag">إدارة وقت</span><span class="tag">أولويات</span><span class="tag">أداة</span>
+                    </div>
+                    <a href="#" class="cta-button" title="تعلم استخدام مصفوفة أيزنهاور">اكتشف الأداة</a>
+                </article>
+                 <article class="dev-tool glass-effect content-scroll-reveal">
+                     <div class="tool-icon" title="تمرين عقلي">
+                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-.5-11.59V10h1v.41l3.71 3.71-1.42 1.42L12 11.83l-2.79 2.79-1.42-1.42L11.5 10.41V9H10v1.41l-3.79 3.79 1.42 1.42L11.5 11.83v3.67h1V11.83l3.88 3.88 1.42-1.42L12.5 10.41z"/></svg> <!-- Example Brain Icon -->
+                     </div>
+                    <h3>تمرين التأمل السلبي (Premeditatio Malorum)</h3>
+                    <p>تقنية رواقية قوية تتضمن التفكير في أسوأ السيناريوهات المحتملة لتقدير ما لديك والاستعداد للتحديات.</p>
+                     <div class="tags-container">
+                        <span class="tag">رواقية</span><span class="tag">مرونة نفسية</span><span class="tag">تمرين عقلي</span>
+                    </div>
+                    <a href="#" class="cta-button" title="تعلم تمرين التأمل السلبي">جرب التمرين</a>
+                 </article>
+                 <article class="dev-tool glass-effect content-scroll-reveal">
+                     <div class="tool-icon" title="تقنية إنتاجية">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg> <!-- Example Timer Icon -->
+                     </div>
+                    <h3>تقنية بومودورو (Pomodoro)</h3>
+                    <p>طريقة لإدارة الوقت تعتمد على العمل في فترات مركزة (عادة 25 دقيقة) تليها فترات راحة قصيرة لزيادة الإنتاجية.</p>
+                     <div class="tags-container">
+                        <span class="tag">إنتاجية</span><span class="tag">إدارة وقت</span><span class="tag">تقنية</span>
+                    </div>
+                    <a href="#" class="cta-button" title="شرح تقنية بومودورو">تعلم التقنية</a>
+                 </article>
+                 <article class="dev-tool glass-effect content-scroll-reveal">
+                    <div class="tool-icon" title="مفهوم للنمو">
+                       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg> <!-- Example Growth Icon -->
+                    </div>
+                    <h3>عقلية النمو (Growth Mindset)</h3>
+                    <p>فهم كيف أن الإيمان بقدرتك على التعلم والتطور (بدلاً من الاعتقاد بأن القدرات ثابتة) يؤثر بشكل كبير على نجاحك ومرونتك.</p>
+                     <div class="tags-container">
+                        <span class="tag">عقلية</span><span class="tag">تعلم</span><span class="tag">تحفيز</span>
+                    </div>
+                    <a href="#" class="cta-button" title="اكتشف قوة عقلية النمو">فهم المفهوم</a>
+                 </article>
+                <!-- أضف المزيد من الأدوات والمفاهيم -->
+                 <!-- يمكن إضافة زر "تحميل المزيد" هنا أيضاً بنفس المبدأ -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Simple version for data page) -->
+     <footer style="margin-top: 40px; padding: 20px 0; text-align: center; color: #aaa; font-size: 0.9rem; border-top: 1px solid var(--glass-border);">
+        <a href="index.html" style="color: var(--accent-color); text-decoration: underline;">العودة إلى الصفحة الرئيسية</a><br><br>
+        © 2024 قناة AMJD. محتوى متجدد باستمرار.
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" id="back-to-top" class="hidden" title="العودة إلى الأعلى">
+       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </a>
+
+    <!-- Link to External JavaScript (Needs updating for new features) -->
+    <script src="script.js"></script>
+
+</body>
+</html>
