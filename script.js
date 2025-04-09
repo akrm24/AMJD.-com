@@ -5,54 +5,26 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('load', () => {
         if (preloader) {
             preloader.classList.add('hidden');
-            preloader.addEventListener('transitionend', () => preloader.remove());
+            preloader.addEventListener('transitionend', () => {
+                if (preloader.parentElement) { // Check if it's still in DOM
+                   preloader.remove();
+                }
+            });
         }
+        // Trigger animations slightly after load if needed
+        // document.body.classList.add('loaded');
     });
 
-    // --- Header Elements ---
+    // --- Header Scroll Effects ---
     const header = document.getElementById('header');
-    const backToTopButton = document.getElementById('back-to-top');
-    const menuToggle = document.getElementById('mobile-menu-toggle');
-    const navUl = document.getElementById('main-nav-ul'); // Get nav list by ID
-    const scrollThreshold = 80;
+    const scrollThreshold = 50; // Shrink header sooner
+    let lastScrollTop = 0;
 
-    // --- Mobile Menu Toggle ---
-    if (menuToggle && navUl) {
-        menuToggle.addEventListener('click', () => {
-            navUl.classList.toggle('open');
-            const isExpanded = navUl.classList.contains('open');
-            menuToggle.setAttribute('aria-expanded', isExpanded);
-            // Optional: Prevent body scroll when menu is open
-            // document.body.style.overflow = isExpanded ? 'hidden' : '';
-        });
-    }
-
-    // --- Close Mobile Menu on Link Click ---
-    const navLinks = document.querySelectorAll('#main-nav-ul a.nav-link'); // Select links inside the main nav
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            // Close menu only if it's open (on mobile view)
-            if (navUl && navUl.classList.contains('open')) {
-                navUl.classList.remove('open');
-                menuToggle.setAttribute('aria-expanded', 'false');
-                // document.body.style.overflow = ''; // Restore body scroll
-            }
-            // Smooth scroll for internal links
-            const targetId = link.getAttribute('href');
-            if (targetId && targetId.startsWith('#')) {
-                smoothScrollTo(targetId);
-            }
-            // Allow default behavior for external links (like data.html)
-        });
-    });
-
-
-    // --- Header Scroll Effects & Back to Top Button ---
     window.addEventListener('scroll', () => {
         const scrollY = window.pageYOffset;
 
-        // Header shrink (only if it's not static)
-        if (header && !header.classList.contains('static-header')) {
+        // Header shrink based on scroll position
+        if (header) {
             if (scrollY > scrollThreshold) {
                 header.classList.add('scrolled');
             } else {
@@ -60,141 +32,115 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Back to Top button visibility
+        // Show/Hide Back to Top button
+        const backToTopButton = document.getElementById('back-to-top');
         if (backToTopButton) {
-            backToTopButton.classList.toggle('visible', scrollY > 300);
+             if (scrollY > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
         }
 
-        // Active Nav Link Highlighting (Only for index.html sections)
-        // Check if we are on the index page by looking for a specific element
-        const isIndexPage = !!document.getElementById('home'); // Check if #home exists
-        if (isIndexPage) {
-            updateActiveNavLink();
+        lastScrollTop = scrollY <= 0 ? 0 : scrollY; // For Mobile or negative scrolling
+    }, { passive: true }); // Improve scroll performance
+
+    // --- Smooth Scrolling for Back to Top ---
+    const backToTopButton = document.getElementById('back-to-top');
+    if (backToTopButton) {
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // --- Mobile Menu Toggle ---
+    const menuToggle = document.getElementById('mobile-menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('open');
+            menuToggle.classList.toggle('open');
+            const isExpanded = navMenu.classList.contains('open');
+            menuToggle.setAttribute('aria-expanded', isExpanded);
+            // Optional: Prevent body scroll when menu is open
+            document.body.style.overflow = isExpanded ? 'hidden' : '';
+        });
+
+        // Close menu when a link is clicked
+        navMenu.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu.classList.contains('open')) {
+                    navMenu.classList.remove('open');
+                    menuToggle.classList.remove('open');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = ''; // Restore body scroll
+                }
+            });
+        });
+         // Close menu if clicking outside of it (optional)
+         document.addEventListener('click', (event) => {
+             if (navMenu.classList.contains('open') && !header.contains(event.target)) {
+                 navMenu.classList.remove('open');
+                 menuToggle.classList.remove('open');
+                 menuToggle.setAttribute('aria-expanded', 'false');
+                 document.body.style.overflow = '';
+             }
+         });
+    }
+
+    // --- Active Nav Link Highlighting based on Current Page ---
+    const currentPath = window.location.pathname.split('/').pop(); // Get the current file name
+    const navLinks = document.querySelectorAll('#nav-menu .nav-link');
+
+    navLinks.forEach(link => {
+        const linkPath = link.getAttribute('href').split('/').pop();
+        // Handle index.html case
+        if ((currentPath === '' || currentPath === 'index.html') && linkPath === 'index.html') {
+            link.classList.add('active');
+        } else if (linkPath !== 'index.html' && currentPath === linkPath) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
         }
     });
 
-    // --- Smooth Scroll Function (Refactored) ---
-    function smoothScrollTo(targetId) {
-         if (targetId === '#home' || targetId === '#') { // Handle #home and simple # links
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            return;
-        }
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            const headerOffset = (header && !header.classList.contains('static-header')) ? header.offsetHeight : 0; // No offset for static header pages
-            const elementPosition = targetElement.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset - 15;
 
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-        }
-    }
-    // Back to top button click handler
-     if (backToTopButton) {
-        backToTopButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            smoothScrollTo('#home'); // Use the smooth scroll function
-        });
-    }
-
-
-    // --- Active Nav Link Highlighting Function (For index.html) ---
-    const indexSections = document.querySelectorAll('#index-content section[data-section-id]'); // Assumes index content wrapped
-    // Or more simply, get sections present ONLY in index.html by ID
-    const sectionsForHighlighting = Array.from(document.querySelectorAll('section'))
-        .filter(sec => ['home', 'library', 'secrets', 'about', 'contact'].includes(sec.id));
-
-    function updateActiveNavLink() {
-        let currentSectionId = '';
-        const headerHeight = (header && !header.classList.contains('static-header')) ? header.offsetHeight : 0;
-        const scrollPosition = window.pageYOffset + headerHeight + 50;
-
-        sectionsForHighlighting.forEach(section => {
-            if (section) { // Check if section exists on the page
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.offsetHeight;
-                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                    currentSectionId = section.getAttribute('data-section-id') || section.id;
-                }
-            }
-        });
-
-        // Adjust for bottom and top edge cases
-        if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 100) {
-            const contactSection = document.getElementById('contact');
-             if (contactSection) currentSectionId = 'contact';
-        } else if (window.pageYOffset < 200) { // Simplified top check
-             currentSectionId = 'home';
-        }
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            // Only highlight links pointing to sections (#...)
-            if (link.getAttribute('href') === `#${currentSectionId}`) {
-                link.classList.add('active');
-            }
-        });
-    }
-    // Initial call only if on index page
-    if (document.getElementById('home')) {
-        updateActiveNavLink();
-    }
-
-    // --- Intersection Observer (Common Logic - works on both pages if elements exist) ---
+    // --- Intersection Observer for Scroll Animations ---
     const animatedElements = document.querySelectorAll('.content-scroll-reveal');
-    const secretsTrigger = document.getElementById('secrets-trigger'); // Still looking on index
-    const secretsSection = document.getElementById('secrets'); // Still looking on index
-
-    // Check if secrets section exists before potentially revealing
-    let secretsRevealed = !secretsSection; // If no secrets section, consider it "revealed"
-
     const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
 
     const observerCallback = (entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // General Animations
-                if (entry.target.classList.contains('content-scroll-reveal')) {
-                     entry.target.classList.add('visible-animate');
-                     observer.unobserve(entry.target);
-                }
-                // Secrets Section Trigger (only if section exists and not revealed)
-                if (entry.target.id === 'secrets-trigger' && secretsSection && !secretsRevealed) {
-                    secretsSection.classList.add('visible');
-                    secretsRevealed = true;
-                    observer.unobserve(entry.target); // Unobserve trigger
-                    console.log("Secrets Revealed!");
-                }
+                entry.target.classList.add('visible-animate');
+                observer.unobserve(entry.target); // Animate only once
             }
         });
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
     animatedElements.forEach(el => observer.observe(el));
-    // Only observe trigger if it exists
-    if (secretsTrigger) {
-        observer.observe(secretsTrigger);
-    }
 
 
-    // --- Copy Wisdom Quote (data.html specific elements) ---
+    // --- Copy Wisdom Quote --- (Will only work on index.html)
     const copyStatusDiv = document.getElementById('copy-status');
-    // Make copyQuote globally available IF the button exists on the page
-    if (document.querySelector('.copy-btn')) {
-        window.copyQuote = function(buttonElement) {
-            const quoteContainer = buttonElement.closest('.wisdom-quote');
-            const quoteElement = quoteContainer ? quoteContainer.querySelector('p') : null;
+    // Make copyQuote globally available if called via onclick attribute
+    window.copyQuote = function(buttonElement) {
+        const quoteContainer = buttonElement.closest('.wisdom-quote');
+        const quoteElement = quoteContainer ? quoteContainer.querySelector('p') : null;
 
-            if (!quoteElement || !navigator.clipboard) {
-                console.error("Quote element not found or clipboard API not supported.");
-                if(copyStatusDiv) showStatusMessage(copyStatusDiv, 'فشل النسخ', false);
-                return;
-            }
-            const quoteText = quoteElement.innerText;
-            navigator.clipboard.writeText(quoteText).then(() => {
-                if(copyStatusDiv) showStatusMessage(copyStatusDiv, 'تم نسخ الحكمة!', true);
+        if (!quoteElement || !navigator.clipboard) {
+            console.error("Quote element not found or clipboard API not supported.");
+            if (copyStatusDiv) showStatusMessage(copyStatusDiv, 'فشل النسخ!', false);
+            return;
+        }
+
+        const quoteText = quoteElement.innerText;
+        navigator.clipboard.writeText(quoteText)
+            .then(() => {
+                if (copyStatusDiv) showStatusMessage(copyStatusDiv, 'تم نسخ الحكمة!', true);
                 buttonElement.classList.add('copied');
                 buttonElement.innerText = '✓ تم النسخ';
                 buttonElement.disabled = true;
@@ -203,81 +149,179 @@ document.addEventListener('DOMContentLoaded', () => {
                     buttonElement.innerText = 'نسخ';
                     buttonElement.disabled = false;
                 }, 2000);
-            }).catch(err => {
+            })
+            .catch(err => {
                 console.error('Failed to copy text: ', err);
-                 if(copyStatusDiv) showStatusMessage(copyStatusDiv, 'فشل النسخ!', false);
+                if (copyStatusDiv) showStatusMessage(copyStatusDiv, 'فشل النسخ!', false);
             });
-        }
-    }
-    // Helper for copy status
-    function showStatusMessage(element, message, isSuccess) {
-        if (!element) return;
-        element.innerText = message;
-        element.classList.add('visible');
-        element.style.color = isSuccess ? 'var(--accent-color)' : '#dc3545';
-        setTimeout(() => { element.classList.remove('visible'); }, 2500);
     }
 
-
-    // --- Wisdom Filter (data.html specific elements) ---
+    // --- Wisdom Filter --- (Will only work on index.html)
     const wisdomFilterInput = document.getElementById('wisdom-filter');
-    const wisdomQuotes = document.querySelectorAll('#wisdom .wisdom-quote');
+    const wisdomQuotes = document.querySelectorAll('#wisdom .wisdom-quote'); // Ensure this selector is specific enough if reused
+
     if (wisdomFilterInput && wisdomQuotes.length > 0) {
         wisdomFilterInput.addEventListener('input', () => {
             const filterValue = wisdomFilterInput.value.toLowerCase().trim();
             wisdomQuotes.forEach(quote => {
                 const quoteText = quote.querySelector('p')?.innerText.toLowerCase() || '';
                 const authorText = quote.querySelector('span')?.innerText.toLowerCase() || '';
-                quote.classList.toggle('hidden-by-filter', !(quoteText.includes(filterValue) || authorText.includes(filterValue)));
+                if (quoteText.includes(filterValue) || authorText.includes(filterValue)) {
+                    quote.classList.remove('hidden-by-filter');
+                } else {
+                    quote.classList.add('hidden-by-filter');
+                }
             });
         });
     }
 
 
-    // --- Contact Form Submission (index.html specific elements) ---
+    // --- Contact Form Handling (using Formspree) --- (Only on contact.html)
     const contactForm = document.getElementById('contact-form');
     const formStatusDiv = document.getElementById('form-status');
+
     if (contactForm && formStatusDiv) {
         contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
+            e.preventDefault(); // Prevent default initially to show status
             formStatusDiv.classList.remove('visible', 'success', 'error');
+
             if (!contactForm.checkValidity()) {
-                showFormStatus('يرجى ملء جميع الحقول المطلوبة بشكل صحيح.', false);
+                showFormStatus(formStatusDiv, 'يرجى ملء الحقول المطلوبة بشكل صحيح.', false);
                 contactForm.reportValidity();
                 return;
             }
+
+            const formData = new FormData(contactForm);
             const submitButton = contactForm.querySelector('button[type="submit"]');
             submitButton.disabled = true;
             submitButton.innerText = 'جاري الإرسال...';
-            showFormStatus('جاري إرسال الرسالة...', true, true);
+            showFormStatus(formStatusDiv, 'جاري الإرسال...', true, true); // Pending
 
             try {
-                await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate delay
-                const simulatedSuccess = true; // Test variable
-                if (simulatedSuccess) {
-                    console.log('Form Data:', new FormData(contactForm));
-                    showFormStatus('شكرًا لك! تم استلام رسالتك بنجاح.', true);
+                const response = await fetch(contactForm.action, {
+                    method: contactForm.method,
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    // const result = await response.json(); // Optional: process result if needed
+                    showFormStatus(formStatusDiv, 'شكرًا لك! تم إرسال رسالتك بنجاح.', true);
                     contactForm.reset();
+                     // Hide status after delay
+                     setTimeout(() => { formStatusDiv.classList.remove('visible'); }, 6000);
                 } else {
-                    throw new Error("Simulated server error");
+                    // Try to get error message from Formspree response
+                    let errorMessage = 'حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى.';
+                     try {
+                         const errorData = await response.json();
+                         if (errorData && errorData.errors) {
+                             errorMessage = errorData.errors.map(error => error.message).join(', ');
+                         }
+                     } catch (jsonError) {
+                         // Ignore if response isn't JSON
+                     }
+                    throw new Error(errorMessage);
                 }
+
             } catch (error) {
-                console.error('Error submitting form:', error);
-                showFormStatus('حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى.', false);
+                console.error('Form submission error:', error);
+                showFormStatus(formStatusDiv, error.message || 'حدث خطأ أثناء الإرسال.', false);
             } finally {
-                 submitButton.disabled = false;
-                 submitButton.innerText = 'إرسال الرسالة';
+                submitButton.disabled = false;
+                submitButton.innerText = 'إرسال الرسالة';
             }
         });
     }
-     // Helper for Contact Form Status
-     function showFormStatus(message, isSuccess, isPending = false) {
-         if (!formStatusDiv) return;
-         formStatusDiv.innerText = message;
-         formStatusDiv.classList.remove('success', 'error');
-         if (!isPending) { formStatusDiv.classList.add(isSuccess ? 'success' : 'error'); }
-         else { formStatusDiv.classList.add('success'); } // Pending style
-         formStatusDiv.classList.add('visible');
+
+     // --- Book Suggestion Form Simulation --- (Only on book.html)
+     const suggestionForm = document.getElementById('book-suggestion-form');
+     const suggestionStatusDiv = document.getElementById('suggestion-status');
+
+     if (suggestionForm && suggestionStatusDiv) {
+         suggestionForm.addEventListener('submit', (e) => {
+             e.preventDefault();
+             if (!suggestionForm.checkValidity()) {
+                  showStatusMessage(suggestionStatusDiv, 'يرجى ملء عنوان الكتاب على الأقل.', false);
+                  suggestionForm.reportValidity();
+                  return;
+             }
+             // Simulate sending
+             const submitBtn = suggestionForm.querySelector('button[type="submit"]');
+             submitBtn.disabled = true;
+             submitBtn.innerText = 'جاري الإرسال...';
+              showStatusMessage(suggestionStatusDiv, 'شكرًا لمشاركتك! (محاكاة)', true);
+             setTimeout(() => {
+                 suggestionForm.reset();
+                 submitBtn.disabled = false;
+                 submitBtn.innerText = 'إرسال المشاركة';
+                  // Hide message
+                 setTimeout(() => { suggestionStatusDiv.classList.remove('visible'); }, 4000);
+             }, 1500);
+         });
      }
+
+
+    // --- Stats Counter Animation --- (Only on achievements.html)
+    const counters = document.querySelectorAll('.stat-number[data-target]');
+    if (counters.length > 0) {
+         const counterObserverOptions = { threshold: 0.5 }; // Trigger when 50% visible
+         const counterObserver = new IntersectionObserver((entries, observer) => {
+             entries.forEach(entry => {
+                 if (entry.isIntersecting) {
+                     const counter = entry.target;
+                     const target = +counter.getAttribute('data-target');
+                     counter.innerText = '0'; // Start from 0
+
+                     const updateCounter = () => {
+                         const current = +counter.innerText;
+                         const increment = target / 100; // Speed of animation
+
+                         if (current < target) {
+                             counter.innerText = `${Math.ceil(current + increment)}`;
+                             // Slow down requestAnimationFrame for smoother feel
+                             setTimeout(requestAnimationFrame, 20, updateCounter);
+                         } else {
+                             counter.innerText = target; // Ensure exact target number
+                         }
+                     };
+                     requestAnimationFrame(updateCounter);
+                     observer.unobserve(counter); // Animate only once
+                 }
+             });
+         }, counterObserverOptions);
+
+         counters.forEach(counter => counterObserver.observe(counter));
+    }
+
+
+    // --- Helper for showing Status Messages (Copy, Forms etc.) ---
+    function showStatusMessage(element, message, isSuccess, isPending = false) {
+        if (!element) return;
+        element.innerText = message;
+        element.classList.remove('success', 'error'); // Reset classes first
+         if (!isPending) {
+            element.classList.add(isSuccess ? 'success' : 'error');
+         } else {
+             element.classList.add('success'); // Use success style for pending
+         }
+        element.classList.add('visible');
+
+         // Auto-hide non-pending messages after a delay
+         if (!isPending) {
+             setTimeout(() => {
+                if (element) element.classList.remove('visible');
+            }, 4000); // Hide after 4 seconds
+         }
+    }
+
+     // --- Footer Current Year ---
+     const yearSpan = document.getElementById('current-year');
+     if(yearSpan) {
+         yearSpan.textContent = new Date().getFullYear();
+     }
+
 
 }); // End DOMContentLoaded
